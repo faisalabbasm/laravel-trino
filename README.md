@@ -473,22 +473,7 @@ docker-compose up -d
 
 ## 🎯 Next Steps
 
-1. **Add More Connectors**: Configure PostgreSQL, SQL Server, or other data sources
-2. **Cross-Database Queries**: Query MongoDB and MySQL together via Trino
-3. **Python Modules**: Create Python services for data quality and profiling
-4. **Authentication**: Add API authentication (Laravel Sanctum/Passport)
-5. **Query Builder**: Create a visual query builder UI
-6. **Scheduling**: Add scheduled data quality checks using Laravel Task Scheduler
-7. **Monitoring**: Integrate with monitoring tools for query performance
-8. **Caching**: Add Redis caching for frequently accessed queries
 
-## 📖 Additional Documentation
-
-- **[QUICKSTART.md](QUICKSTART.md)** - 5-minute quick start guide
-- **[DRIFT_DETECTION_QUICKSTART.md](DRIFT_DETECTION_QUICKSTART.md)** - Drift detection quick start
-- **[MONGODB_SETUP.md](MONGODB_SETUP.md)** - Complete MongoDB setup and query guide
-- **[TESTING_GUIDE.md](TESTING_GUIDE.md)** - Testing and validation guide
-- **[UI_USAGE_GUIDE.md](UI_USAGE_GUIDE.md)** - Web interface usage guide
 
 ## 📚 Resources
 
@@ -501,5 +486,3 @@ docker-compose up -d
 MIT License
 
 ---
-
-Built with ❤️ for Data Governance
