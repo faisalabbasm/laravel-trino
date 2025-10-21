@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # MySQL Database for testing
+  mysql:
+    image: mysql:8.0
+    container_name: laravel_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - trino_network
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: laravel_mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin_password
+      MONGO_INITDB_DATABASE: test_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./docker/mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - trino_network
+
+  # Trino Coordinator
+  trino:
+    image: trinodb/trino:latest
+    container_name: laravel_trino
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker/trino/catalog:/etc/trino/catalog
+      - ./docker/trino/config.properties:/etc/trino/config.properties
+    networks:
+      - trino_network
+    depends_on:
+      - mysql
+      - mongodb
+
+  # Laravel Application (optional - you can run locally too)
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - trino_network
+    depends_on:
+      - mysql
+      - trino
+    environment:
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: test_db
+      DB_USERNAME: test_user
+      DB_PASSWORD: test_password
+      TRINO_HOST: trino
+      TRINO_PORT: 8080
+
+networks:
+  trino_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+  mongodb_data:
+

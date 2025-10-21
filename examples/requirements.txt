@@ -1,0 +1,3 @@
+# Python dependencies for Trino integration
+trino>=0.328.0
+

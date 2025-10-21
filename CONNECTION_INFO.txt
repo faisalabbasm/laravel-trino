@@ -1,0 +1,96 @@
+========================================
+ MYSQL CONNECTION INFORMATION
+========================================
+
+Host: 127.0.0.1 (or localhost)
+Port: 3307
+Database: test_db
+Username: test_user
+Password: test_password
+
+--- OR USE ROOT ACCESS ---
+Username: root
+Password: root_password
+
+========================================
+ RECOMMENDED GUI CLIENTS
+========================================
+
+1. TablePlus (⭐ Best for Mac)
+   Download: https://tableplus.com/
+   - Beautiful UI
+   - Fast and lightweight
+   - Multi-database support
+
+2. Sequel Ace (Free for Mac)
+   Download: https://sequel-ace.com/
+   - Free and open source
+   - Simple interface
+   - Good for basic operations
+
+3. MySQL Workbench (Official)
+   Download: https://dev.mysql.com/downloads/workbench/
+   - Official MySQL tool
+   - Advanced features
+   - Cross-platform
+
+4. DBeaver (Free, Cross-platform)
+   Download: https://dbeaver.io/
+   - Supports many databases
+   - Community edition is free
+   - Works on Mac, Windows, Linux
+
+========================================
+ QUICK START WITH TABLEPLUS
+========================================
+
+1. Download and install TablePlus
+2. Click "Create a new connection"
+3. Select "MySQL"
+4. Enter:
+   Name: Laravel MySQL
+   Host: 127.0.0.1
+   Port: 3306
+   User: test_user
+   Password: test_password  
+   Database: test_db
+5. Click "Test" then "Connect"
+
+========================================
+ SAMPLE QUERIES TO TRY
+========================================
+
+-- Show all tables
+SHOW TABLES;
+
+-- View users
+SELECT * FROM users;
+
+-- View products
+SELECT * FROM products;
+
+-- Count records
+SELECT COUNT(*) FROM users;
+SELECT COUNT(*) FROM products;
+
+-- Department stats
+SELECT department, 
+       COUNT(*) as employees,
+       AVG(salary) as avg_salary
+FROM users 
+GROUP BY department;
+
+========================================
+ INSTALL MYSQL CLIENT (OPTIONAL)
+========================================
+
+If you want command-line access:
+
+brew install mysql-client
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+Then connect with:
+mysql -h 127.0.0.1 -P 3306 -u test_user -ptest_password test_db
+
+========================================
+
