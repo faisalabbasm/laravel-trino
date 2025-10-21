@@ -13,7 +13,8 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-/*.md
+# Allow README.md and other important docs
+# *.md
 /storage
 /*.sh
 /*.sql
